@@ -1,22 +1,27 @@
 import React from 'react'
-import LazyHero from 'react-lazy-hero'
-
-const heroStyle = {
-  color: 'black',
-  fontSize: '100px'
-}
-
-const subtitle = {
-  fontSize: '40px'
-}
+import styles from '../commonComponents/Hero.module.css'
 
 const Hero = () => {
-  return <div className="hero">
-    <LazyHero imageSrc="https://coverr.co/74ff56e1-40c4-4f0e-86e7-b342e8a22a72">
-      <h1 style={heroStyle}>This is my app</h1>
-      <p style={subtitle}></p>
-    </LazyHero>
-  </div>
+  return (
+    <section className={styles.section}>
+      <div className={styles.hero_img} />
+      <article className={styles.article}>
+        <h1 className={styles.h1}>Hello, surfer!</h1>
+        <p className={styles.p}>
+I've built this {' '}
+          <a
+            className={styles.link}
+            target='_blank'
+            rel='noopener noreferrer'
+            href='https://www.reactjs.org'
+          >
+            <i>React </i>
+          </a>
+          app to showcase the best of Portugal's surf scene
+        </p>
+      </article>
+    </section>
+  )
 }
 
 export default Hero

@@ -41,7 +41,6 @@ const SingleRegionNorth = (props) => {
         </div>
         <div className="column is-half-tablet">
           <img src={data.image} />
-          <Rating className="rating" />
         </div>
 
         <CommentForm 

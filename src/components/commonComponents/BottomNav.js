@@ -28,7 +28,7 @@ const BottomNav = () => {
           <div className="navbar-start">
 
           <div className="navbar-item">
-              <Link className='black-link' to={'/current'}>Current</Link>
+              <Link className='black-link' to={'/current'}>News</Link>
             </div>
 
             <div className="navbar-item">

@@ -1,50 +1,52 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import 'mapbox-gl/dist/mapbox-gl.css'
-import Map from '../commonComponents/Map'
 import Auth from '../../lib/auth'
 import CommentForm from '../commonComponents/CommentForm'
+// import 'mapbox-gl/dist/mapbox-gl.css'
+// import Map from '../commonComponents/Map'
+
+
 
 const SingleRegionNorth = (props) => {
-  const [data, setData] = useState({ comments: [] })
+  const [data, setData] = useState( { comments: [] })
 
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/regions-north/${props.match.params.id}`)
       .then(res => res.json())
-      .then(res => setData(res))     
-  }, [])
+      .then(res => setData(res))
+  },[])
 
 
   function handleDelete(e) {
-    axios.delete(`http://localhost:5000/api/regions-north/${props.match.params.id}/comments/${e.target.id}`, {
+    axios.delete(`/api/regions-north/${props.match.params.id}/comments/${e.target.id}`, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(res => setData(res.data)) 
   }
 
-
-  
+ 
   return <div className="section">
     <div className="container">
       <div className="columns is-multiline">
         <div className="column is-half-tablet">
           <p className="titleFour">
-            {data.title}
+            {data.spot}
           </p>
           <p className="subtitle">
-            {data.address}
+            {data.level}
           </p>
           <p>
-            {data.text}
+            {data.crowd}
           </p>
         </div>
         <div className="column is-half-tablet">
           <img src={data.image} />
         </div>
+       
 
         <CommentForm 
-          url={`http://localhost:5000/api/regions-north/${props.match.params.id}/comments`}
+          url={`/api/regions-north/${props.match.params.id}/comments`}
           updateData={setData}
           data={data}
         />
@@ -53,16 +55,13 @@ const SingleRegionNorth = (props) => {
           <div className='column'>
             {data.comments.map((comment) => 
               <div className="is-half" 
-                key={comment._id}> 
+                key={comment._id} > 
                 <div>{comment.content}</div>
                 <br />
                 {/* <div>from {`${Auth.getUser().username}`}</div> */}
                 <button className="delete" id={comment._id} onClick={(e) => handleDelete(e)}></button> 
-              </div>
+              </div> 
             )}
-            <div className='column'>
-              <Map  data={data}/>
-            </div>
           </div>
         </div> 
       </div>

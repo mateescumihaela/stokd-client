@@ -2,22 +2,24 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
 import CommentForm from '../commonComponents/CommentForm'
+// import 'mapbox-gl/dist/mapbox-gl.css'
+// import Map from '../commonComponents/Map'
 
 
 
-const SingleCurrent = (props) => {
+const SingleRegionSouth = (props) => {
   const [data, setData] = useState( { comments: [] })
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/current/${props.match.params.id}`)
+    fetch(`http://localhost:5000/api/regions-south/${props.match.params.id}`)
       .then(res => res.json())
       .then(res => setData(res))
   },[])
 
 
   function handleDelete(e) {
-    axios.delete(`/api/current/${props.match.params.id}/comments/${e.target.id}`, {
+    axios.delete(`/api/regions-south/${props.match.params.id}/comments/${e.target.id}`, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(res => setData(res.data)) 
@@ -29,15 +31,14 @@ const SingleCurrent = (props) => {
       <div className="columns is-multiline">
         <div className="column is-half-tablet">
           <p className="titleFour">
-            {data.title}
+            {data.spot}
           </p>
           <p className="subtitle">
-            {data.author}
+            {data.level}
           </p>
           <p>
-            {data.text}
+            {data.crowd}
           </p>
-          <p><a href={data.url} target="_blank" rel="noopener noreferrer"><strong>Read More</strong></a> </p>
         </div>
         <div className="column is-half-tablet">
           <img src={data.image} />
@@ -45,7 +46,7 @@ const SingleCurrent = (props) => {
        
 
         <CommentForm 
-          url={`/api/current/${props.match.params.id}/comments`}
+          url={`/api/regions-south/${props.match.params.id}/comments`}
           updateData={setData}
           data={data}
         />
@@ -70,4 +71,4 @@ const SingleCurrent = (props) => {
 }
 
 
-export default SingleCurrent
+export default SingleRegionSouth

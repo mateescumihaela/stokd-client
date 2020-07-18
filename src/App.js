@@ -26,6 +26,7 @@ const App = () => {
   return <BrowserRouter>
 
     <BottomNav />
+  
 
     <Switch>
       <Route exact path= '/' component={Home} />    

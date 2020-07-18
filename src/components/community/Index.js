@@ -3,7 +3,7 @@ import UseAxios from '../commonComponents/UseAxios'
 import CommunityCard from './CommunityCard'
 
 const CommunityListing = () => {
-  const data = UseAxios('/api/communities')
+  const data = UseAxios('http://localhost:5000/api/communities')
   console.log(data)
   return (
     <div className="section">

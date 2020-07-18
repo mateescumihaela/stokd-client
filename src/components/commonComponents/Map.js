@@ -15,9 +15,9 @@ class Map extends React.Component {
       viewport: {
         width: 800,
         height: 500,
-        latitude: 51.5074,
-        longitude: 0.1278,
-        zoom: 10,
+        latitude: 38.96275,
+        longitude: -9.41563,
+        zoom: 5,
         bearing: 0,
         pitch: 0
       },
@@ -37,7 +37,7 @@ class Map extends React.Component {
     const { data } = this.props
     return (
       <Marker longitude={data.lng} latitude={data.lat}>
-        <img src='https://i.imgur.com/P1REhj4.png' 
+        <img src='https://cdn0.iconfinder.com/data/icons/travel-and-holiday-1/64/Travel_surfing-512.png' 
           height="50" 
           width="50"
           onClick={() => this.setState({ info: this.props.data })}
@@ -49,7 +49,6 @@ class Map extends React.Component {
 
   _renderPopup() {
     const { info } = this.state
-
     return (
       info && (
         <Popup

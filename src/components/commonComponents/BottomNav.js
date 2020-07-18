@@ -16,7 +16,7 @@ const BottomNav = () => {
   return (
     <nav className="navbar is-fixed-bottom" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <Link className="stokdlogo navbar-item" to="/"><img src='https://img.freepik.com/free-vector/surfboard-bright-set-standing-different-positions_89224-1985.jpg?size=626&ext=jpg' ></img></Link>
+        <Link className="stokdlogo navbar-item" to="/"><img src='https://i0.wp.com/travelpedia.com.br/wp-content/uploads/2019/07/surf-icon.png?ssl=1' ></img></Link>
         <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onClick={clickBurger}>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>

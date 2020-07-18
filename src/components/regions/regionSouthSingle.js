@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
 import CommentForm from '../commonComponents/CommentForm'
-// import 'mapbox-gl/dist/mapbox-gl.css'
-// import Map from '../commonComponents/Map'
+import 'mapbox-gl/dist/mapbox-gl.css'
+import Map from '../commonComponents/Map'
 
 
 
@@ -62,6 +62,9 @@ const SingleRegionSouth = (props) => {
                 <button className="delete" id={comment._id} onClick={(e) => handleDelete(e)}></button> 
               </div> 
             )}
+  <div className='column'>
+              <Map  data={data}/>
+              </div>
           </div>
         </div> 
       </div>

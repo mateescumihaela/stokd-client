@@ -10,14 +10,14 @@ const SingleCurrent = (props) => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/current/${props.match.params.id}`)
+    fetch(`https://stokd-server.herokuapp.com/api/current/${props.match.params.id}`)
       .then(res => res.json())
       .then(res => setData(res))
   },[])
 
 
   function handleDelete(e) {
-    axios.delete(`/api/current/${props.match.params.id}/comments/${e.target.id}`, {
+    axios.delete(`https://stokd-server.herokuapp.com/api/current/${props.match.params.id}/comments/${e.target.id}`, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(res => setData(res.data)) 

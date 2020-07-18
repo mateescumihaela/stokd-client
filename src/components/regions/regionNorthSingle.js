@@ -12,14 +12,14 @@ const SingleRegionNorth = (props) => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/regions-north/${props.match.params.id}`)
+    fetch(`https://stokd-server.herokuapp.com/api/regions-north/${props.match.params.id}`)
       .then(res => res.json())
       .then(res => setData(res))
   },[])
 
 
   function handleDelete(e) {
-    axios.delete(`/api/regions-north/${props.match.params.id}/comments/${e.target.id}`, {
+    axios.delete(`https://stokd-server.herokuapp.com/api/regions-north/${props.match.params.id}/comments/${e.target.id}`, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(res => setData(res.data)) 
@@ -46,7 +46,7 @@ const SingleRegionNorth = (props) => {
        
 
         <CommentForm 
-          url={`/api/regions-north/${props.match.params.id}/comments`}
+          url={`https://stokd-server.herokuapp.com/api/regions-north/${props.match.params.id}/comments`}
           updateData={setData}
           data={data}
         />

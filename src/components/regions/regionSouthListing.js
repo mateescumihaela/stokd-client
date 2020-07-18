@@ -12,7 +12,7 @@ class RegionSouth extends React.Component {
   } 
 
   componentDidMount() {
-    axios.get(('http://localhost:5000/api/regions-south'))
+    axios.get(('https://stokd-server.herokuapp.com/api/regions-south'))
       .then(res => this.setState({ regionSouthData: res.data }))
       .catch(err => console.log(err))
   }

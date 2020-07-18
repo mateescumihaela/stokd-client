@@ -15,7 +15,7 @@ class RegionNorth extends React.Component {
   } 
 
   componentDidMount() {
-    axios.get(('http://localhost:5000/api/regions-north'))
+    axios.get(('https://stokd-server.herokuapp.com/api/regions-north'))
       .then(res => this.setState({ regionNorthData: res.data }))
       .catch(err => console.log(err))
   }

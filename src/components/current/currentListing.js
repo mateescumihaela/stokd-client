@@ -12,7 +12,7 @@ class CurrentListing extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/api/current')
+    axios.get('https://stokd-server.herokuapp.com/api/current')
       .then(res => this.setState({ currents: res.data }))
       .catch(err => console.log(err))
   }

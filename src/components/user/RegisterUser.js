@@ -33,7 +33,7 @@ const RegisterUser = (props) => {
   function handleSubmit(e) {
     // e.persist()
     e.preventDefault()
-    axios.post('http://localhost:5000/api/register', data)
+    axios.post('https://stokd-server.herokuapp.com/api/register', data)
       .then(res => {
         console.log(res.data)
         if (errors.errors === '')

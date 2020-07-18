@@ -25,7 +25,7 @@ const Login = (props) => {
   function handleSubmit(e) {
     e.persist()
     e.preventDefault()
-    axios.post('http://localhost:5000/api/login', data)
+    axios.post('https://stokd-server.herokuapp.com/api/login', data)
       .then(res => {
         Auth.setToken(res.data.token)
         Auth.setUser(res.data.user)

@@ -7,9 +7,11 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "cheerio": "^1.0.0-rc.3",
+    "history": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
     "local-storage": "^2.0.0",
     "mapbox-gl": "^1.11.1",
+    "material-ui": "^0.20.2",
     "moment": "^2.27.0",
     "node": "^14.5.0",
     "node-sass": "^4.14.1",
@@ -18,10 +20,14 @@
     "react-dom": "^16.13.1",
     "react-lazy-hero": "^2.0.0",
     "react-map-gl": "^5.2.7",
+    "react-masonry-component": "^6.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-sizeme": "^2.6.12",
+    "react-stack-grid": "^0.7.1",
     "sass": "^1.26.9",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "tachyons": "^4.12.0"
   },
   "scripts": {
     "start": "react-scripts start",

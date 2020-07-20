@@ -3,8 +3,7 @@ import Auth from '../../lib/auth'
 import axios from 'axios'
 
 
-
-const CommentForm = ({ url, updateData, data }) => {
+const CommentForm = ({ props, url, updateData, data }) => {
   const [formData, setFormData] = useState('')
   const [errors, setErrors] = useState({
     errors: []
@@ -17,7 +16,7 @@ const CommentForm = ({ url, updateData, data }) => {
 
   function handleSubmit(e) {
     e.preventDefault()
-    axios.post( url , { content: formData }, {
+    axios.post( 'https://stokd-server.herokuapp.com/api/communities/5f1310e6792ea638956e485f/comments' , { content: formData }, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(response => {
@@ -25,11 +24,11 @@ const CommentForm = ({ url, updateData, data }) => {
         newData.comments = response.data 
         updateData(newData)
         setFormData('')
+        props.history.push('https://stokd-server.herokuapp.com/api/communities/5f1310e6792ea638956e485f')
       })
       .catch(err => setErrors({ ...err, errors: err.data }))
   }
   
-
 
   return (
     <div>
@@ -51,9 +50,6 @@ const CommentForm = ({ url, updateData, data }) => {
 
   )
 }
-
-
-
 
 
 export default CommentForm

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
-import CommentForm from '../commonComponents/CommentForm'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import Map from '../commonComponents/Map'
 
@@ -45,12 +44,7 @@ const SingleRegionEast = (props) => {
         </div>
        
 
-        <CommentForm 
-          url={`https://stokd-server.herokuapp.com/api/regions-east/${props.match.params.id}/comments`}
-          updateData={setData}
-          data={data}
-        />
-
+        
         <div className='columns'>
           <div className='column'>
             {data.comments.map((comment) => 

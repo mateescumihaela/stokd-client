@@ -1,10 +1,7 @@
 import React from 'react'
 import MapGL, { Marker, Popup } from 'react-map-gl'
-
 import 'mapbox-gl/dist/mapbox-gl.css'
-
 import MapInfo from '../commonComponents/MapInfo'
-
 const Token = 'pk.eyJ1IjoicGhvZWJleHh4YyIsImEiOiJjazMxenUxYmUwZGdhM2xzMmVwZG5iNnQ0In0.NS8058Cpk5wl3Qko8cJQiQ'
 
 
@@ -17,7 +14,7 @@ class Map extends React.Component {
         height: 500,
         latitude: 38.96275,
         longitude: -9.41563,
-        zoom: 5,
+        zoom: 5.5,
         bearing: 0,
         pitch: 0
       },
@@ -73,7 +70,7 @@ class Map extends React.Component {
     return <div>
       <MapGL
         { ...this.state.viewport }
-        mapStyle="mapbox://styles/mapbox/streets-v11"
+        mapStyle="mapbox://styles/mapbox/outdoors-v11"
         onViewportChange={this._updateViewport}
         mapboxApiAccessToken={Token}
       >

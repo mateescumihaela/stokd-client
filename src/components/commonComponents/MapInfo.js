@@ -6,7 +6,7 @@ const MapInfo = ({ info }) => (
      <div>{info.title}</div>
     <img width={240} src={info.image} />
     <div>
-      <a href={info.website} target='_blank'>Check out the surfing conditions</a>
+      <a href='/weather'>Check out the surfing forecast</a>
     </div>
   </div> 
 

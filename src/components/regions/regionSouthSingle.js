@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
-import CommentForm from '../commonComponents/CommentForm'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import Map from '../commonComponents/Map'
 
@@ -43,13 +42,7 @@ const SingleRegionSouth = (props) => {
         <div className="column is-half-tablet">
           <img src={data.image} />
         </div>
-       
-
-        <CommentForm 
-          url={`https://stokd-server.herokuapp.com/api/regions-south/${props.match.params.id}/comments`}
-          updateData={setData}
-          data={data}
-        />
+    
 
         <div className='columns'>
           <div className='column'>
@@ -62,6 +55,9 @@ const SingleRegionSouth = (props) => {
                 <button className="delete" id={comment._id} onClick={(e) => handleDelete(e)}></button> 
               </div> 
             )}
+           <div className='column'>
+              <Map  data={data}/>
+            </div>
           </div>
         </div> 
       </div>

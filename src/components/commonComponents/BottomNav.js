@@ -1,78 +1,69 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import 'bulma'
+import Auth from '../../lib/auth'
 
 const BottomNav = () => {
-  const [navClassName, setNavClassName] = React.useState('navbar-menu')
 
-  const clickBurger = () => {
-    if (navClassName === 'navbar-menu') {
-      setNavClassName('navbar-menu is-active')
-    } else {
-      setNavClassName('navbar-menu')
-    }
+  const [data, setData] = useState()
+
+  function handleLogout(e) {
+    e.preventDefault()
+    Auth.logOut()
+    setData({ ...data })
+    e.props.history.push('/')
   }
 
+  console.log(data)
+  
+  
   return (
-    <nav className="navbar is-fixed-bottom" role="navigation" aria-label="main navigation">
-      <div className="navbar-brand">
-        <Link className="stokdlogo navbar-item" to="/"><img src='https://i0.wp.com/travelpedia.com.br/wp-content/uploads/2019/07/surf-icon.png?ssl=1' ></img></Link>
-        <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onClick={clickBurger}>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-      <div className="navbar-menu is-active has-text-black is-size-4">
-        <div id="navbarBasicExample" className={navClassName}>
-          <div className="navbar-start">
-
-          <div className="navbar-item">
-              <Link className='black-link' to={'/current'}>News</Link>
-            </div>
-
-            <div className="navbar-item">
-              <Link className='black-link' to={'/communities'}>Community</Link>
-            </div>
-
-            <div className="navbar-item has-dropdown-up is-hoverable">
-              <a className="black-link navbar-link">
-                Regions
-              </a>
-              <div className="navbar-dropdown is-hoverable">
-                <Link className="navbar-item" to={'/regions-north'}>
-                  North
-                </Link>
-                <Link className="navbar-item" to={'/regions-south'}>
-                  South
-                </Link>
-                <Link className="navbar-item" to={'/regions-east'}>
-                  East
-                </Link>
-              </div>
-            </div>
+    <div className='z-1 garamond flex fixed w-100 justify-between bg-white'>
+      <div className='flex'>
+        <Link to={'/'} className='grow green pa3 ml4'>Home</Link>
+        <Link to={'/current'} className='grow green pa3'>News</Link>
+        <Link to={'/communities'} className='grow green pa3'>Community</Link>
+        <Link to={'/weather'} className='grow green pa3'>Forecast</Link>
+        <div className='grow green pa3 pointer flex flex-wrap hide-child'>
+          Explore by region ▸ 
+          <div className='child'>
+            <Link to={'/regions-north'} className='green pa3'>
+              North
+            </Link>
+            <Link to={'/regions-south'} className='green pa3'>
+              South
+            </Link>
+            <Link to={'/regions-east'} className='green pa3'>
+              East
+            </Link>  
           </div>
-
-          <div className="navbar-end">
-            <div className="buttons navbar-item">
-              <div className="buttons">
-                <Link className="button is-white" to={'/register'}>
-                  <strong>Sign up</strong>
-                </Link>
-                <Link className="button is-white" to={'/login'}>
-                  Log in
-                </Link>
-                <Link className="button is-white" to={'/login'}>
-                  Log out
-                </Link>
-              </div>
-            </div>
-          </div>
+          
         </div>
+      </div>     
+
+      <div className='flex'>
+
+        {!Auth.isAuthenticated() && <Link to='/register' className='grow gray pa3'>
+          <strong>Sign up</strong>
+        </Link>}
+
+        {!Auth.isAuthenticated() && 
+        <Link to='/login' className='grow gray pa3'>
+          Log in
+        </Link>}
+
+        {Auth.isAuthenticated() && <a className='grow gray pa3 mr3' onClick={(e)=>handleLogout(e)}>
+          Log out
+        </a>} 
+
+        {Auth.isAuthenticated() && <Link to='dashboard' className='grow gray pa3 mr3'>
+          { Auth.isAuthenticated() ? `Hello ${Auth.getUser().username}👋` : '' }
+        </Link>}
+
       </div>
-    </nav >
+    </div>
   )
 }
+
 
 
 export default BottomNav

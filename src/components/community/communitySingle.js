@@ -4,10 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import Map from '../commonComponents/Map'
 import Auth from '../../lib/auth'
 import CommentForm from '../commonComponents/CommentForm'
-// import Rating from '../commonComponents/Rating'
-
-
-
+//import Rating from '../commonComponents/Rating'
 
 const SingleCommunity = (props) => {
   const [data, setData] = useState({ comments: [] })
@@ -26,15 +23,15 @@ const SingleCommunity = (props) => {
 
 
   useEffect(() => {
-    fetch(`https://stokd-server.herokuapp.com/api/${props.match.params.id}`)
+    fetch(`https://stokd-server.herokuapp.com/api/communities/${props.match.params.id}`)
       .then(res => res.json())
       .then(res => setData(res))
-      // .then(res => setEvent({ event: res }))      
+      .then(res => setEvent({ event: res }))      
   }, [])
 
 
   function handleDelete(e) {
-    axios.delete(`https://stokd-server.herokuapp.com/api/${props.match.params.id}/comments/${e.target.id}`, {
+    axios.delete(`https://stokd-server.herokuapp.com/api/communities/${props.match.params.id}/comments/${e.target.id}`, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(res => setData(res.data)) 
@@ -61,23 +58,23 @@ const SingleCommunity = (props) => {
           {/* <Rating className="rating" /> */}
         </div>
 
-        <CommentForm 
+  <CommentForm 
           url={`https://stokd-server.herokuapp.com/api/${props.match.params.id}/comments`}
           updateData={setData}
           data={data}
-        />
+        /> 
 
-        <div className='columns'>
+         <div className='columns'>
           <div className='column'>
             {data.comments.map((comment) => 
               <div className="is-half" 
                 key={comment._id}> 
                 <div>{comment.content}</div>
-                <br />
-                {/* <div>from {`${Auth.getUser().username}`}</div> */}
-                <button className="delete" id={comment._id} onClick={(e) => handleDelete(e)}></button> 
+                 <br />
+                <div>from {`${Auth.getUser().username}`}</div>
+              <button className="delete" id={comment._id} onClick={(e) => handleDelete(e)}></button> 
               </div>
-            )}
+            )} 
             <div className='column'>
               <Map  data={data}/>
             </div>
@@ -85,7 +82,7 @@ const SingleCommunity = (props) => {
         </div> 
       </div>
     </div>
-  </div> 
+ </div> 
 
 }
 

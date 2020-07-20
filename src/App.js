@@ -11,23 +11,23 @@ import RegionSouthListing from './components/regions/regionSouthListing'
 import RegionSouthSingle from './components/regions/regionSouthSingle'
 import RegionEastListing from './components/regions/regionEastListing'
 import RegionEastSingle from './components/regions/regionEastSingle'
-import CommunityListing from './components/community/Index'
-import SingleCommunity from './components/community/Show'
+import CommunityListing from './components/community/communityListing'
+import SingleCommunity from './components/community/communitySingle'
 import RegisterUser from './components/user/RegisterUser'
 import LoginUser from './components/user/LoginUser'
+import WeatherDisplay from './components/weather/WeatherDisplay'
+import WeatherResults from './components/weather/WeatherResults'
 import BottomNav from './components/commonComponents/BottomNav' 
 import './style.css'
+import 'tachyons'
 
 
 const App = () => {
 
-  // console.log(Auth.getToken())
-  // console.log(Auth.getUser().username)
   return <BrowserRouter>
 
     <BottomNav />
   
-
     <Switch>
       <Route exact path= '/' component={Home} />    
       <Route exact path= '/current' component={CurrentListing} />
@@ -42,12 +42,12 @@ const App = () => {
       <Route exact path= '/communities/:id' component={SingleCommunity} />
       <Route path="/register" component={RegisterUser} />
       <Route path="/login" component={LoginUser} />
+      <Route path="/weather" component={WeatherDisplay} />
       <Route exact path= '/not-found' component={NotFound} />    
     </Switch>
 
   </BrowserRouter>
 }
-
 
 ReactDOM.render(
   <App />, 

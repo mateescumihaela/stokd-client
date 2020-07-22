@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Auth from '../../lib/auth'
+import LoginLogout from './LoginLogout'
 
 const BottomNav = () => {
 
@@ -39,27 +40,28 @@ const BottomNav = () => {
           
         </div>
       </div>     
+      <LoginLogout />
 
-      <div className='flex'>
+ {/*      <div className='flex'>
 
-        {!Auth.isAuthenticated() && <Link to='/register' className='grow gray pa3'>
+       <Link to='/register' className='grow gray pa3'>
           <strong>Sign up</strong>
-        </Link>}
+        </Link>
 
-        {!Auth.isAuthenticated() && 
+    
         <Link to='/login' className='grow gray pa3'>
           Log in
-        </Link>}
+        </Link>
 
-        {Auth.isAuthenticated() && <a className='grow gray pa3 mr3' onClick={(e)=>handleLogout(e)}>
+<a className='grow gray pa3 mr3' onClick={(e)=>handleLogout(e)}>
           Log out
-        </a>} 
+        </a>
 
         {Auth.isAuthenticated() && <Link to='dashboard' className='grow gray pa3 mr3'>
-          { Auth.isAuthenticated() ? `Hello ${Auth.getUser().username}👋` : '' }
+          { Auth.isAuthenticated() ? `Hello 👋` : '' }
         </Link>}
 
-      </div>
+      </div> */}
     </div>
   )
 }

@@ -1,122 +1,100 @@
-import React, { useState } from 'react'
+
+import React from 'react'
 import axios from 'axios'
 
+class Register extends React.Component {
 
+  constructor() {
+    super()
 
-const RegisterUser = (props) => {
-  
+    this.state = {
+      data: {},
+      errors: {}
+    }
 
-  const [data, setData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirmation: ''
-  })
-  const [errors, setErrors] = useState({
-    errors: ''
-  })
-
-
-  function handleChange(e) { 
-    e.persist()
-    console.log(data)
-    // [e.target.name] is a [key], so doesn't matter what we type inside
-    // it will be generate to a key in our object
-    // see here: https://stackoverflow.com/questions/50376353/wy-we-need-to-put-e-target-name-in-square-brackets
-    setData(data => ({ ...data, [e.target.name]: e.target.value }))
-    setErrors(errors => ({ ...errors, [e.target.name]: '' }))
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  function handleSubmit(e) {
-    // e.persist()
+  handleChange(e) {
+    const data = { ...this.state.data, [e.target.name]: e.target.value }
+    this.setState({ data })
+  }
+
+  handleSubmit(e) {
     e.preventDefault()
-    axios.post('https://stokd-server.herokuapp.com/api/register', data)
-      .then(res => {
-        console.log(res.data)
-        if (errors.errors === '')
-          props.history.push('/login')
-      }) 
-      //this will catch our error in the backend, and setError will save it in our front end
-      // ...errors, if they were empty(no error). Keep them empty
-      // and if there is any new errors, update them with ...err.errors
-      .catch(err =>setErrors({ ...errors, ...err.error }))
+
+    axios.post('https://stokd-server.herokuapp.com/api/register', this.state.data)
+      .then(() => this.props.history.push('/login'))
+      .catch(err => this.setState({ errors: err.response.data.errors }))
   }
-  
 
-
-
-  return <div className="flex flex-column items-center justify-center bg-near-white vh-100">
-    <form onSubmit={(e) => handleSubmit(e)}>
-      <div className="pa3 mr2 mt6">
-        <label>
-          Email
-        </label>
-        <input
-          onChange={(e) => handleChange(e)}
-          type="text"
-          required={true}
-          name="email"
-          className="input"
-        />
-        {/* this is not working... */}
-        {/* {errors.email && <small className="red">
-          {errors.email}
-        </small>} */}
-      </div>
-
-      <div className="pa3 mr2">
-        <label>
-          Username
-        </label>
-        <input
-          onChange={(e) => handleChange(e)}
-          type="text"
-          required={true}
-          name="username"
-          className="input"
-        />
-      </div>
-
-      <div className="pa3 mr2">
-        <label>
-          Password
-        </label>
-        <input
-          onChange={(e) => handleChange(e)}
-          type="text"
-          required={true}
-          name="password"
-          className="input"
-        />
-      </div>
-
-      <div className="pa3 mr2">
-        <label className='grow:hover'>
-          Confirm password
-        </label>
-        <input
-          onChange={(e) => handleChange(e)}
-          type="text"
-          required={true}
-          name="passwordConfirmation"
-          className="input"
-        />
-      </div>
-
-      <div className="pa3 mr2 mt2 tc">
-        <button className="pointer pa2 washed-green bg-dark-gray grow br2 ">
-          Register
-        </button>
-      </div>
-      
-      <div className="pa3 mr2 mt5 f6 tc">
-        <p>Already have an account? <a href={'/login'} className='gray dim:hover b'>Click here to log in</a></p>
-      </div>
-    </form>
-  </div>
-
+  render() {
+    return (
+      <section className="section">
+        <div className="container">
+          <div className="columns is-centered">
+            <div className="column is-half-desktop is-two-thirds-tablet">
+              <div className="title is-3">Register</div>
+              <form onSubmit={this.handleSubmit}>
+                <div className="field">
+                  <label className="label">Username</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      name="username"
+                      placeholder="eg: leela3000"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  {this.state.errors.username && <div className="help is-danger">{this.state.errors.username}</div>}
+                </div>
+                <div className="field">
+                  <label className="label">Email</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      name="email"
+                      placeholder="eg: firstname.lastname@email.com"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  {this.state.errors.email && <div className="help is-danger">{this.state.errors.email}</div>}
+                </div>
+                <div className="field">
+                  <label className="label">Password</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      name="password"
+                      type="password"
+                      placeholder="eg: ••••••••"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  {this.state.errors.password && <div className="help is-danger">{this.state.errors.password}</div>}
+                </div>
+                <div className="field">
+                  <label className="label">Password Confirmation</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      name="passwordConfirmation"
+                      type="password"
+                      placeholder="eg: ••••••••"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  {this.state.errors.passwordConfirmation && <div className="help is-danger">{this.state.errors.passwordConfirmation}</div>}
+                </div>
+                <button className="button">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
 }
 
-
-
-export default RegisterUser
+export default Register

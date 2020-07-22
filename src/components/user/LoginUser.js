@@ -1,87 +1,85 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+
 import Auth from '../../lib/auth'
 
-const Login = (props) => {
+class Login extends React.Component {
 
-  const [data, setData] = useState({
-    email: '',
-    password: ''
-  })
-  const [errors, setErrors] = useState({
-    errors: {}
-  })
+  constructor() {
+    super()
 
+    this.state = {
+      data: {},
+      error: ''
+    }
 
-  function handleChange(e) {
-    e.persist()
-    setData(data => ({ ...data, [e.target.name]: e.target.value }))
-    setErrors(err => ({ ...err, [e.target.name]: '' }))
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  function handleSubmit(e) {
-    // e.persist()
+  handleChange(e) {
+    const data = { ...this.state.data, [e.target.name]: e.target.value }
+    this.setState({ data })
+  }
+
+  handleSubmit(e) {
     e.preventDefault()
-    axios.post('https://stokd-server.herokuapp.com/api/login', data)
+
+    axios.post('https://stokd-server.herokuapp.com/api/login', this.state.data)
       .then(res => {
         Auth.setToken(res.data.token)
-        Auth.setUser(res.data.user)
-        // console.log(res.data.user)
-        // console.log(Auth.getUser())
-        props.history.push('/')
-        window.location.reload()
+        console.log(res.data.token)
+        this.props.history.push('/')
       })
-      .catch(err => setErrors({ ...errors, errors: err.data }))
+      .catch(err => console.log(err))
   }
 
-  
+  render() {
+    return (
+      <section className="section">
+        <div className="container">
+          <div className="columns is-centered">
+            <div className="column is-half-desktop is-two-thirds-tablet">
+              <div className="title is-3">Login</div>
+              <form onSubmit={this.handleSubmit}>
+                <div className="field">
+                  <label className="label">Email</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      name="email"
+                      placeholder="eg: yourname@gmail.com"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                </div>
+                <div className="field">
+                  <label className="label">Password</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      name="password"
+                      type="password"
+                      placeholder="eg: ••••••••"
+                      onChange={this.handleChange}
+                    />
+                  </div>
 
+                  {this.state.error && <div className="help is-danger">{this.state.error}</div>}
+                </div>
 
-  return <div className="flex flex-column items-center justify-center bg-near-white vh-100">
-    <form onSubmit={(e) => handleSubmit(e)}>
-      <div className="pa3 mr2 mt6">
-        <label>
-          Email
-        </label>
-        <input
-          onChange={(e) => handleChange(e)}
-          type="text"
-          required={true}
-          name="email"
-          className="input"
-        />
-        {/* {this.state.errors.email && <small className="help is-danger">
-        {this.state.errors.email}
-      </small>} */}
-      </div>
-
-      <div className="pa3 mr2">
-        <label>
-          Password
-        </label>
-        <input
-          onChange={(e) => handleChange(e)}
-          type="text"
-          required={true}
-          name="password"
-          className="input"
-        />
-      </div>
-
-      <div className="pa3 mr2 mt2 tc">
-        <button className="pointer pa2 washed-green bg-dark-gray grow br2 ">
-          Log in
-        </button>
-      </div>
-      
-      <div className="pa3 mr2 mt5 f6 tc">
-        <p>Need to register an account? <a href={'/register'} className='gray dim:hover b'>Click here to register</a></p>
-      </div>
-    </form>
-  </div>
-
-
+                <button className="button">Submit</button>
+              </form>
+              <div className="section has-text-centered">
+                <p className="is-size-5">Need an account? <Link to='/register'>Click here</Link> to register</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
 }
-
 
 export default Login

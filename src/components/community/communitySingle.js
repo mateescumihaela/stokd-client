@@ -58,7 +58,7 @@ const SingleCommunity = (props) => {
           {/* <Rating className="rating" /> */}
         </div>
 
-  <CommentForm 
+{/*   <CommentForm 
           url={`https://stokd-server.herokuapp.com/api/${props.match.params.id}/comments`}
           updateData={setData}
           data={data}
@@ -76,10 +76,10 @@ const SingleCommunity = (props) => {
               </div>
             )} 
             <div className='column'>
-              <Map  data={data}/>
             </div>
           </div>
-        </div> 
+        </div>  */}
+         <Map  data={data}/>
       </div>
     </div>
  </div> 

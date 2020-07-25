@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Auth from '../../lib/auth'
 import axios from 'axios'
 
 
-const CommentForm = ({ props, url, updateData, data }) => {
+
+const CommentForm = ({ url, updateData, data }) => {
   const [formData, setFormData] = useState('')
   const [errors, setErrors] = useState({
     errors: []
   })
+
+  // function getcomment(){
+  //   axios.get(comment)
+  //   .then((response)=>setFormData(response))
+  // }
+
+  // useEffect(getcomment, [])
 
   function handleChange(e) {
     setFormData(e.target.value)
@@ -16,7 +24,7 @@ const CommentForm = ({ props, url, updateData, data }) => {
 
   function handleSubmit(e) {
     e.preventDefault()
-    axios.post( 'https://stokd-server.herokuapp.com/api/communities/5f1310e6792ea638956e485f/comments' , { content: formData }, {
+    axios.post( url , { content: formData }, {
       headers: { Authorization: `Bearer ${Auth.getToken()}` }
     })
       .then(response => {
@@ -24,32 +32,36 @@ const CommentForm = ({ props, url, updateData, data }) => {
         newData.comments = response.data 
         updateData(newData)
         setFormData('')
-        props.history.push('https://stokd-server.herokuapp.com/api/communities/5f1310e6792ea638956e485f')
+        // getcomment()
       })
       .catch(err => setErrors({ ...err, errors: err.data }))
   }
   
 
+
   return (
-    <div>
-      {Auth.isAuthenticated() && <h6>Hi {`${Auth.getUser().username}`}, what's on your mind?</h6>}
+    <div className='mb4'>
+      {Auth.isAuthenticated() && <h6 className='f4 dark-gray mr4'>What's on your mind?</h6>}
       {Auth.isAuthenticated() && <form onSubmit={(e) => handleSubmit(e)}>
-        <textarea
+        <textarea 
           onChange={(e) => handleChange(e)}
-          className="name-bar form-control"
+          className='db border-box hover-black w-100 mw-100 ba b--black-20 bg-near-white br2 mb2'
           placeholder="Your Comment"
-          value={formData}
-          name="content"
-          rows="5"
-        /><br></br>
-        <button className="comment-bar">
-          Send Comment
+          // value={formData}
+          rows='6'
+          cols='60'
+        />
+        <button className='pointer pa2 washed-green bg-dark-gray grow br2'>
+          Add Comment
         </button>
       </form>}
     </div>
 
   )
 }
+
+
+
 
 
 export default CommentForm

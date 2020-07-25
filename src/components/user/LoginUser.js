@@ -72,7 +72,7 @@ class Login extends React.Component {
                 <button className="button">Submit</button>
               </form>
               <div className="section has-text-centered">
-                <p className="is-size-5">Need an account? <Link to='/register'>Click here</Link> to register</p>
+                <p className="is-size-5">Need an account? <Link to='/register'><strong>Click here</strong></Link> to register</p>
               </div>
             </div>
           </div>

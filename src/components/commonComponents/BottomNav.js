@@ -18,50 +18,26 @@ const BottomNav = () => {
   
   
   return (
-    <div className='z-1 garamond flex fixed w-100 justify-between bg-white'>
+    <div className='f5 lh-copy z-1 garamond flex fixed w-100 justify-between bg-white'>
       <div className='flex'>
-        <Link to={'/'} className='grow green pa3 ml4'>Home</Link>
-        <Link to={'/current'} className='grow green pa3'>News</Link>
-        <Link to={'/communities'} className='grow green pa3'>Community</Link>
-        <Link to={'/weather'} className='grow green pa3'>Forecast</Link>
-        <div className='grow green pa3 pointer flex flex-wrap hide-child'>
+        <Link to={'/'} className='grow orange pa3 ml4'>Home</Link>
+        <Link to={'/current'} className='grow orange pa3'>News</Link>
+        <Link to={'/communities'} className='grow orange pa3'>Community</Link>
+        <Link to={'/weather'} className='grow orange pa3'>Forecast</Link>
+        <div className='grow orange pa3 pointer flex flex-wrap hide-child'>
           Explore by region ▸ 
           <div className='child'>
-            <Link to={'/regions-north'} className='green pa3'>
-              North
+          <Link to={'/regions-south'} className='orange pa3'>
+              Southern Portugal
             </Link>
-            <Link to={'/regions-south'} className='green pa3'>
-              South
+            <Link to={'/regions-north'} className='orange pa3'>
+              (WIP) Northern Portugal
             </Link>
-            <Link to={'/regions-east'} className='green pa3'>
-              East
-            </Link>  
           </div>
           
         </div>
       </div>     
       <LoginLogout />
-
- {/*      <div className='flex'>
-
-       <Link to='/register' className='grow gray pa3'>
-          <strong>Sign up</strong>
-        </Link>
-
-    
-        <Link to='/login' className='grow gray pa3'>
-          Log in
-        </Link>
-
-<a className='grow gray pa3 mr3' onClick={(e)=>handleLogout(e)}>
-          Log out
-        </a>
-
-        {Auth.isAuthenticated() && <Link to='dashboard' className='grow gray pa3 mr3'>
-          { Auth.isAuthenticated() ? `Hello 👋` : '' }
-        </Link>}
-
-      </div> */}
     </div>
   )
 }

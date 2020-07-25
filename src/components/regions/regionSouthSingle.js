@@ -33,10 +33,13 @@ const SingleRegionSouth = (props) => {
             {data.spot}
           </p>
           <p className="subtitle">
-            {data.level}
+            <strong>Level</strong>: {data.level}
           </p>
-          <p>
-            {data.crowd}
+          <p className="subtitle">
+            <strong>Crowd</strong>: {data.crowd}
+          </p>
+          <p className="subtitle">
+            <strong>At a glance</strong>: {data.description}
           </p>
         </div>
         <div className="column is-half-tablet">

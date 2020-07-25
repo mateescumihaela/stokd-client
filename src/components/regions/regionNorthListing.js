@@ -32,7 +32,7 @@ class RegionNorth extends React.Component {
     imagesLoadedOptions={imagesLoadedOptions} // default {}
 >
   <div className="section">
-      <h1 className="titleOne">Check out some of the best spots in Northern Portugal</h1>
+      <h1 className="titleOne">Coming Soon 🚧</h1>
       <div className="container">
         <div className="columns is-mobile is-multiline">
           {this.state.regionNorthData.map((regionnorth, i) => {

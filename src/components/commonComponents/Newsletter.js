@@ -13,10 +13,10 @@ const Newsletter = () => {
             <p class="tc">Subscribe and get the latest articles delivered straight to your inbox</p>
             <input class="input-reset ba b--black-20 pa2 mb2 center db w-50" type="text"/>
             <br/>
-            <a 
+            <button 
                 className="center f6 link dim ph3 pv2 mb2 dib white bg-dark-gray" 
                 onClick={(e) => setIsOpen(true)}
-                >Subscribe</a>
+                >Subscribe</button>
             <Modal 
                 isOpen={isOpen}
                 onClose={(e) => setIsOpen(false)}

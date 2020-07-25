@@ -7,7 +7,7 @@ const CommunityListing = () => {
   console.log(data)
   return (
     <div className="section">
-      <h1 className="titleOne">After cool places to check out?</h1>
+      <h1 className="titleOne">Places to check out while surftripping</h1>
       <div className="container">
         <div className="titleThree">
           <div className="columns is-mobile is-multiline">

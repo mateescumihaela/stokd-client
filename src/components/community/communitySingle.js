@@ -4,6 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import Map from '../commonComponents/Map'
 import Auth from '../../lib/auth'
 import CommentForm from '../commonComponents/CommentForm'
+import styles from '../commonComponents/Hero.module.css'
 
 const SingleCommunity = (props) => {
   const [data, setData] = useState({ comments: [] })
